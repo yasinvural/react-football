@@ -1,0 +1,23 @@
+.league-selection-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.league-selection-container .league-card-container{
+    border:1px solid #ccc;
+    padding: 1% 2%;
+    margin: 2% 0;
+    cursor:pointer;
+}
+
+.league-selection-container .league-card-container .league-name{
+    position: relative;
+    top: 10%;
+    margin: 10% 0;
+}
+
+
+.league-selection-container .league-card-container:hover{
+   transform:scale(1.2); 
+}

@@ -1,0 +1,22 @@
+.left-menu-container{
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    border-right: 1px solid #ccc;
+}
+
+.left-menu-container .league-card-container{
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.left-menu-container .league-card-container.selected{
+    background:lightblue;
+}
+
+.left-menu-container .league-card-container .league-img{
+    padding: 2% 0;
+}
+

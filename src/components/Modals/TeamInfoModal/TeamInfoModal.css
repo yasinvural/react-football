@@ -1,0 +1,57 @@
+#team-info-modal {
+  width: 50%;
+  min-width: 300px;
+  max-height: 90%;
+  border-radius: 4%;
+  padding: 0;
+  overflow: auto;
+}
+
+#team-info-modal .header-info {
+  background: -webkit-linear-gradient(180deg, #6690ae 0%, #494f55 100%);
+  background: -o-linear-gradient(180deg, #6690ae 0%, #494f55 100%);
+  background: linear-gradient(180deg, #6690ae 0%, #494f55 100%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  top: -1px;
+  color: white;
+}
+
+#team-info-modal .header-info .closeButton {
+  cursor: pointer;
+}
+
+#team-info-modal .detail-info {
+  margin: 2% 5%;
+  display: flex;
+  flex-direction: column;
+}
+#team-info-modal .detail-info .player {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2px 0;
+  cursor: pointer;
+}
+#team-info-modal .detail-info .player-gk {
+  margin-left: 0;
+}
+
+#team-info-modal .detail-info .player-def {
+  margin-left: 15%;
+}
+
+#team-info-modal .detail-info .player-mid {
+  margin-left: 30%;
+}
+
+#team-info-modal .detail-info .player-fw {
+  margin-left: 45%;
+}
+
+#team-info-modal .detail-info .player-coach {
+  text-align: right;
+  margin-right: 5%;
+}

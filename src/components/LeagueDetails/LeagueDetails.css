@@ -1,0 +1,17 @@
+.league-detail-container{
+    width: 100%;
+    height: 100vh;
+}   
+
+.league-detail-container .left-menu-content{
+    width: 200px;
+    height: 100%;
+    float:left;
+    text-align:center;
+}
+
+.league-detail-container .main-content{
+    width: calc(100% - 200px);
+    height: 100%;
+    float:left;
+}
