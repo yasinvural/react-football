@@ -71,45 +71,51 @@ export default class FootballProvider extends Component {
     }
   };
 
-  loadFixtures = () => {
+  async loadFixtures() {
     const { currentLeagueCode, selectedWeek } = this.state;
-    const fixtureResult = footballService.getMatches(
-      currentLeagueCode,
-      selectedWeek
-    );
-    fixtureResult.then(data => {
-      const fixtures = data.data.matches;
+    try {
+      const fixtureResult = await footballService.getMatches(
+        currentLeagueCode,
+        selectedWeek
+      );
+      const fixtures = fixtureResult.data.matches;
       this.setState({
         fixtures
       });
-    });
-  };
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  loadStandings = () => {
+  async loadStandings() {
     const { currentLeagueCode } = this.state;
-    if (currentLeagueCode) {
-      const standingResult = footballService.getStandings(currentLeagueCode);
-      standingResult.then(data => {
-        const standings = data.data.standings[0].table;
+    try {
+      if (currentLeagueCode) {
+        const standingResult = await footballService.getStandings(
+          currentLeagueCode
+        );
+        const standings = standingResult.data.standings[0].table;
         this.setState({
           standings
         });
-      });
+      }
+    } catch (err) {
+      console.log(err);
     }
-  };
+  }
 
-  loadGoalStatistic = () => {
+  async loadGoalStatistic() {
     const { currentLeagueCode } = this.state;
-    const goalStatisticResult = footballService.getGoalStatistic(
-      currentLeagueCode
-    );
-    goalStatisticResult.then(data => {
-      const scorers = data.data.scorers;
-      this.setState({
-        scorers
-      });
-    });
-  };
+    try {
+      const goalStatisticResult = await footballService.getGoalStatistic(
+        currentLeagueCode
+      );
+      const scorers = goalStatisticResult.data.scorers;
+      this.setState({ scorers });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   render() {
     return (
