@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from "react-notifications";
 import { Route } from "react-router-dom";
 import FootballContext from "../../context/FootballContext";
 import FootballProvider from "../../context/FootballProvider";
@@ -8,21 +8,25 @@ import FootballProvider from "../../context/FootballProvider";
 import LeagueSelection from "../LeagueSelection/LeagueSelection";
 import LeagueDetails from "../LeagueDetails/LeagueDetails";
 class App extends Component {
-
   render() {
     return (
-      <FootballProvider>
-        <div className="App">
+      <div className="App">
+        <FootballProvider>
           <Route exact path="/" component={LeagueSelection} />
           <FootballContext.Consumer>
-            {(context)=>(
+            {context => (
               <React.Fragment>
-                <Route path="/league" render={(props)=> <LeagueDetails context={context} {...props}/> } />
+                <Route
+                  path="/league"
+                  render={props => (
+                    <LeagueDetails context={context} {...props} />
+                  )}
+                />
               </React.Fragment>
             )}
           </FootballContext.Consumer>
-        </div>
-      </FootballProvider>
+        </FootballProvider>
+      </div>
     );
   }
 }
