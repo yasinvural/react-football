@@ -49,3 +49,24 @@
   flex-grow: 1;
   text-align: right;
 }
+
+@media (max-width: 480px){
+  .fixture-container .match-container .match .home-team{
+    flex:2;
+  }
+
+  .fixture-container .match-container .match .score{
+    margin:0;
+    flex:1;
+  }
+
+  .fixture-container .match-container .match .away-team{
+    flex:2;
+  }
+
+  .fixture-container .match-container .match .status{
+    flex:1;
+  }
+
+
+}

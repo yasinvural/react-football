@@ -7,8 +7,9 @@
 .league-selection-container .league-card-container{
     border:1px solid #ccc;
     padding: 1% 2%;
-    margin: 2% 0;
+    margin: 2%;
     cursor:pointer;
+    flex:1;
 }
 
 .league-selection-container .league-card-container .league-name{
@@ -17,7 +18,22 @@
     margin: 10% 0;
 }
 
-
 .league-selection-container .league-card-container:hover{
    transform:scale(1.2); 
+}
+
+@media (max-width: 960px) {
+    .league-selection-container{
+        flex-direction: column;
+        width: 78%;
+        margin: 2% auto;
+    }
+    .league-selection-container .league-card-container .league-img{
+        text-align: center;
+    }
+
+    .league-selection-container .league-card-container .league-name{
+        margin: 0;
+        text-align: center;
+    }
 }
