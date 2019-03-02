@@ -56,6 +56,7 @@ const styles = theme => ({
 });
 
 class Fixtures extends Component {
+
   renderWeeksOptions = () => {
     const { currentLeagueCode } = this.props.context;
     let weeks;

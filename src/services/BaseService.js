@@ -1,4 +1,5 @@
 import axios from "axios";
+import {NotificationManager} from "react-notifications";
 const TOKEN = "104830cb63b14c85b8e5ec593d507470";
 
 export function get(url) {
@@ -20,5 +21,5 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use(null,error=>{
-  alert(error.toString());
+  NotificationManager.error("Allowed to 10 calls per minute !");
 })
