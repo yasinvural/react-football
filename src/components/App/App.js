@@ -11,7 +11,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FootballProvider>
+        <Route exact path="/" component={LeagueSelection} />
+        {/* <FootballProvider>
           <Route exact path="/" component={LeagueSelection} />
           <FootballContext.Consumer>
             {context => (
@@ -25,7 +26,7 @@ class App extends Component {
               </React.Fragment>
             )}
           </FootballContext.Consumer>
-        </FootballProvider>
+        </FootballProvider> */}
       </div>
     );
   }
