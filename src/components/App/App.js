@@ -13,8 +13,6 @@ class App extends Component {
     return (
       <FootballProvider>
         <div className="App">
-          HELLO WORLD
-          {/* <NotificationContainer/>
           <Route exact path="/" component={LeagueSelection} />
           <FootballContext.Consumer>
             {(context)=>(
@@ -22,7 +20,7 @@ class App extends Component {
                 <Route path="/league" render={(props)=> <LeagueDetails context={context} {...props}/> } />
               </React.Fragment>
             )}
-          </FootballContext.Consumer> */}
+          </FootballContext.Consumer>
         </div>
       </FootballProvider>
     );
