@@ -18,3 +18,7 @@ axios.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+
+axios.interceptors.response.use(null,error=>{
+  alert(error.toString());
+})

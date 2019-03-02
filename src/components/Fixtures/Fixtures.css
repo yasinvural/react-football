@@ -5,7 +5,7 @@
 .fixture-container .match-container {
   padding: 1%;
   border: 1px solid #ccc;
-  width: 35%;
+  /* width: 35%; */
 }
 
 .fixture-container .match-container.FINISHED {
