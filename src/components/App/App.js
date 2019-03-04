@@ -12,12 +12,12 @@ class App extends Component {
     return (
       <div className="App">
         <FootballProvider>
-          <Route exact path="/" component={LeagueSelection} />
+          <Route exact path="/react-football" component={LeagueSelection} />
           <FootballContext.Consumer>
             {context => (
               <React.Fragment>
                 <Route
-                  path="/league"
+                  path="/react-football/league"
                   render={props => (
                     <LeagueDetails context={context} {...props} />
                   )}
