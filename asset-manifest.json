@@ -1,7 +1,7 @@
 {
   "main.css": "/react-football/static/css/main.91bb545c.chunk.css",
-  "main.js": "/react-football/static/js/main.86bd9283.chunk.js",
-  "main.js.map": "/react-football/static/js/main.86bd9283.chunk.js.map",
+  "main.js": "/react-football/static/js/main.e1bb68fa.chunk.js",
+  "main.js.map": "/react-football/static/js/main.e1bb68fa.chunk.js.map",
   "static/css/1.650952a8.chunk.css": "/react-football/static/css/1.650952a8.chunk.css",
   "static/js/1.4b649506.chunk.js": "/react-football/static/js/1.4b649506.chunk.js",
   "static/js/1.4b649506.chunk.js.map": "/react-football/static/js/1.4b649506.chunk.js.map",
@@ -13,6 +13,6 @@
   "static/css/main.91bb545c.chunk.css.map": "/react-football/static/css/main.91bb545c.chunk.css.map",
   "static/css/1.650952a8.chunk.css.map": "/react-football/static/css/1.650952a8.chunk.css.map",
   "index.html": "/react-football/index.html",
-  "precache-manifest.8d73a4c6fcb72cb05c29ed5d497d8430.js": "/react-football/precache-manifest.8d73a4c6fcb72cb05c29ed5d497d8430.js",
+  "precache-manifest.c1aa2bb96449125af2280711c68268e9.js": "/react-football/precache-manifest.c1aa2bb96449125af2280711c68268e9.js",
   "service-worker.js": "/react-football/service-worker.js"
 }
