@@ -1,5 +1,5 @@
 import {get} from './BaseService';
-const BASEURL = "http://api.football-data.org/v2/";
+const BASEURL = "https://api.football-data.org/v2/";
 
 export default class FootballService{
 
