@@ -17,7 +17,7 @@ class App extends Component {
             {context => (
               <React.Fragment>
                 <Route
-                  path="/react-football/league"
+                  path="/league"
                   render={props => (
                     <LeagueDetails context={context} {...props} />
                   )}
