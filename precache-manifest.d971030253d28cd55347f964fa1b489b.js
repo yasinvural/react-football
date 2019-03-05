@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/react-football/static/media/logo_serie_a.d146f5a4.png"
   },
   {
-    "revision": "ca619d4e52521f0d16a7",
-    "url": "/react-football/static/css/main.91bb545c.chunk.css"
+    "revision": "9b95a5b8d5dc6e660189",
+    "url": "/react-football/static/css/main.704c6462.chunk.css"
   },
   {
-    "revision": "5bee74caefdf9d0a834915f6c8eeb259",
-    "url": "/react-football/static/media/notification.5bee74ca.svg"
+    "revision": "651771e1df95c807c99608188d0a4287",
+    "url": "/react-football/static/media/notification.651771e1.woff"
   },
   {
-    "revision": "748cb378b604dd8aa367",
-    "url": "/react-football/static/js/1.748cb378.chunk.js"
+    "revision": "d6cbdc3776c5f65e5b23",
+    "url": "/react-football/static/js/1.d6cbdc37.chunk.js"
   },
   {
     "revision": "1fe8cf5926b2d338963a",
@@ -24,8 +24,12 @@ self.__precacheManifest = [
     "url": "/react-football/static/media/logo_ligue_1.9dbd0df1.png"
   },
   {
-    "revision": "ca619d4e52521f0d16a7",
-    "url": "/react-football/static/js/main.ca619d4e.chunk.js"
+    "revision": "9b95a5b8d5dc6e660189",
+    "url": "/react-football/static/js/main.9b95a5b8.chunk.js"
+  },
+  {
+    "revision": "5bee74caefdf9d0a834915f6c8eeb259",
+    "url": "/react-football/static/media/notification.5bee74ca.svg"
   },
   {
     "revision": "c0d3c94cd6112550c51d7d1ed13b9da1",
@@ -36,15 +40,11 @@ self.__precacheManifest = [
     "url": "/react-football/static/media/notification.0b4ac1dc.ttf"
   },
   {
-    "revision": "651771e1df95c807c99608188d0a4287",
-    "url": "/react-football/static/media/notification.651771e1.woff"
+    "revision": "d6cbdc3776c5f65e5b23",
+    "url": "/react-football/static/css/1.383cc372.chunk.css"
   },
   {
-    "revision": "748cb378b604dd8aa367",
-    "url": "/react-football/static/css/1.650952a8.chunk.css"
-  },
-  {
-    "revision": "692cb6ade01c46877e962e07da34a79a",
+    "revision": "893f9cdbbf7af2cd10384b920f1706fe",
     "url": "/react-football/index.html"
   }
 ];
