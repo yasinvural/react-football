@@ -12,6 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <FootballProvider>
+        <NotificationContainer/>
           <Route exact path="/react-football" component={LeagueSelection} />
           <FootballContext.Consumer>
             {context => (
