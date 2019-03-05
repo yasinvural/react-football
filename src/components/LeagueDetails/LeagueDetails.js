@@ -34,24 +34,6 @@ export default class extends Component {
     return null;
   }
 
-  /*_renderBackup() {
-    let { currentLeague } = this.state;
-    return (
-      <FootballContext.Consumer>
-        {context => (
-          <div className="league-detail-container">
-            <div className="left-menu-content">
-              <LeftMenu selectedLeague={currentLeague} />
-            </div>
-            <div className="main-content">
-              <MainContent />
-            </div>
-          </div>
-        )}
-      </FootballContext.Consumer>
-    );
-  }*/
-
   render() {
     let { currentLeague } = this.state;
     return (

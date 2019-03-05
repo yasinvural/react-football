@@ -5,6 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
+import Spinner from "../Spinner/Spinner";
 
 const BootstrapInput = withStyles(theme => ({
   root: {
@@ -56,7 +57,6 @@ const styles = theme => ({
 });
 
 class Fixtures extends Component {
-
   renderWeeksOptions = () => {
     const { currentLeagueCode } = this.props.context;
     let weeks;
@@ -99,40 +99,47 @@ class Fixtures extends Component {
     );
   }
 
-  renderStatus(status){
-    switch(status){
-        case "FINISHED":
-            return "Completed";
-            break;
-        case "IN_PLAY":
-            return "Live";
-            break;
-        case "SCHEDULED":
-            return "Not Started Yet";
-            break;
-        case "POSTPONED":
-            return "Postponed";
-            break;
-        default:
-            return "";
+  renderStatus(status) {
+    switch (status) {
+      case "FINISHED":
+        return "Completed";
+        break;
+      case "IN_PLAY":
+        return "Live";
+        break;
+      case "SCHEDULED":
+        return "Not Started Yet";
+        break;
+      case "POSTPONED":
+        return "Postponed";
+        break;
+      default:
+        return "";
     }
   }
   renderMatchResults() {
     const { fixtures } = this.props.context;
-      return(
-            <React.Fragment>
-                {fixtures.map((match,i)=>
-                    <div key={i} className={`${match.status} match-container`}>
-                        <div className="match">
-                            <div className="home-team">{match.homeTeam.name}</div>
-                            <div className="score">{match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}</div>
-                            <div className="away-team">{match.awayTeam.name}</div>
-                            <div className="status">{this.renderStatus(match.status)}</div>
-                        </div>
-                    </div>
-                )}
-            </React.Fragment>
-      )
+    if (fixtures.length === 0) {
+      return <Spinner />;
+    } else {
+      return (
+        <React.Fragment>
+          {fixtures.map((match, i) => (
+            <div key={i} className={`${match.status} match-container`}>
+              <div className="match">
+                <div className="home-team">{match.homeTeam.name}</div>
+                <div className="score">
+                  {match.score.fullTime.homeTeam} -{" "}
+                  {match.score.fullTime.awayTeam}
+                </div>
+                <div className="away-team">{match.awayTeam.name}</div>
+                <div className="status">{this.renderStatus(match.status)}</div>
+              </div>
+            </div>
+          ))}
+        </React.Fragment>
+      );
+    }
   }
   render() {
     return (

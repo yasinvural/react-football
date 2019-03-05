@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import "./GoalStatistic.css";
 import GoalScorerCard from "../GoalScorerCard/GoalScorerCard";
+import Spinner from "../Spinner/Spinner";
 
 export default class GoalStatistic extends Component {
-    componentDidMount(){
-        console.log(this.props.context.scorers);
-    }
-
     render(){
         const {scorers} = this.props.context;
-        if(scorers.length === 0){
+        if(scorers.length == 0){
             return(
-                <div>goal statistic will be here.</div>
+                <Spinner/>
             )
         }else{
             return(

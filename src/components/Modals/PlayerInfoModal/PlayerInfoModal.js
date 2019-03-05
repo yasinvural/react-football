@@ -62,7 +62,7 @@ class PlayerInfoModal extends Component {
                 <span>{new Date(player.dateOfBirth).toLocaleDateString()}</span>
               </div>
               <div>
-                <span>Shirt number: </span>
+                <span>Number</span>
                 <span>{player.shirtNumber ? player.shirtNumber : "-"}</span>
               </div>
             </div>

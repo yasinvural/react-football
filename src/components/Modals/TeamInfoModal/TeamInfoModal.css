@@ -1,6 +1,6 @@
 #team-info-modal {
   width: 50%;
-  min-width: 300px;
+  min-width: 400px;
   max-height: 90%;
   border-radius: 4%;
   padding: 0;
@@ -8,9 +8,9 @@
 }
 
 #team-info-modal .header-info {
-  background: -webkit-linear-gradient(180deg, #6690ae 0%, #494f55 100%);
-  background: -o-linear-gradient(180deg, #6690ae 0%, #494f55 100%);
-  background: linear-gradient(180deg, #6690ae 0%, #494f55 100%);
+  background: -webkit-linear-gradient(180deg, #8bc0e6 0%, #0f7eec 100%);
+  background: -o-linear-gradient(180deg, #8bc0e6 0%, #0f7eec 100%);
+  background: linear-gradient(180deg, #8bc0e6 0%, #0f7eec 100%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
