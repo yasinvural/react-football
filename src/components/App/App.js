@@ -8,27 +8,25 @@ import FootballProvider from "../../context/FootballProvider";
 import LeagueSelection from "../LeagueSelection/LeagueSelection";
 import LeagueDetails from "../LeagueDetails/LeagueDetails";
 
-const  App = ()=> {
-    return (
-      <div className="App">
-        <FootballProvider>
-        <NotificationContainer/>
-          <Route exact path="/react-football" component={LeagueSelection} />
-          <FootballContext.Consumer>
-            {context => (
-              <React.Fragment>
-                <Route
-                  path="/league"
-                  render={props => (
-                    <LeagueDetails context={context} {...props} />
-                  )}
-                />
-              </React.Fragment>
-            )}
-          </FootballContext.Consumer>
-        </FootballProvider>
-      </div>
-    );
-}
+const App = () => {
+  return (
+    <div className="App">
+      <FootballProvider>
+        <NotificationContainer />
+        <Route exact path="/react-football" component={LeagueSelection} />
+        <FootballContext.Consumer>
+          {context => (
+            <React.Fragment>
+              <Route
+                path="/league"
+                render={props => <LeagueDetails context={context} {...props} />}
+              />
+            </React.Fragment>
+          )}
+        </FootballContext.Consumer>
+      </FootballProvider>
+    </div>
+  );
+};
 
 export default App;

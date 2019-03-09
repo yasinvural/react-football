@@ -27,19 +27,19 @@ const styles = theme => ({
   }
 });
 
-const TeamInfoModal = (props) =>{
+const TeamInfoModal = props => {
   const [squad, setSquad] = useState([]);
   const [isPlayerInfoModalOpen, setIsPlayerInfoModalOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
   const footballService = new FootballService();
 
-  useEffect(()=>{
+  useEffect(() => {
     const { teamId } = props;
     let teamInfo = footballService.getTeamInfo(teamId);
     teamInfo.then(data => {
       setSquad(data.data.squad);
     });
-  },[]);
+  }, []);
 
   const handleOpenPlayerInfoModal = player => {
     setIsPlayerInfoModalOpen(true);
@@ -50,7 +50,7 @@ const TeamInfoModal = (props) =>{
     setIsPlayerInfoModalOpen(false);
   };
 
-  const squadClass = (position) => {
+  const squadClass = position => {
     switch (position) {
       case "Goalkeeper":
         return "player player-gk";
@@ -69,14 +69,14 @@ const TeamInfoModal = (props) =>{
     }
   };
 
-  const renderSquad = ()=> {
+  const renderSquad = () => {
     return squad.map(player => (
       <div
         key={player.id}
         className={squadClass(player.position)}
         onClick={() => handleOpenPlayerInfoModal(player)}
       >
-        <span>{player.position ? player.position : 'Coach'}-</span>
+        <span>{player.position ? player.position : "Coach"}-</span>
         <span>{player.name}</span>
       </div>
     ));
@@ -96,34 +96,27 @@ const TeamInfoModal = (props) =>{
     }
   };
 
-    const { classes, isTeamInfoModalOpen } = props;
-    return (
-      <div>
-        {renderPlayerInfoModal()}
-        <Modal
-          open={isTeamInfoModalOpen}
-          onClose={props.closeTeamInfoModal}
+  const { classes, isTeamInfoModalOpen } = props;
+  return (
+    <div>
+      {renderPlayerInfoModal()}
+      <Modal open={isTeamInfoModalOpen} onClose={props.closeTeamInfoModal}>
+        <div
+          style={getModalStyle()}
+          className={classes.paper}
+          id="team-info-modal"
         >
-          <div
-            style={getModalStyle()}
-            className={classes.paper}
-            id="team-info-modal"
-          >
-            <div className="header-info">
-              <div>Squad</div>
-              <div
-                className="closeButton"
-                onClick={props.closeTeamInfoModal}
-              >
-                X
-              </div>
+          <div className="header-info">
+            <div>Squad</div>
+            <div className="closeButton" onClick={props.closeTeamInfoModal}>
+              X
             </div>
-            <div className="detail-info">{renderSquad()}</div>
           </div>
-        </Modal>
-      </div>
-    );
-
-}
+          <div className="detail-info">{renderSquad()}</div>
+        </div>
+      </Modal>
+    </div>
+  );
+};
 
 export default withStyles(styles)(TeamInfoModal);

@@ -2,7 +2,7 @@ import React from "react";
 import "./LeagueSelection.css";
 import { leagues } from "../../const/index";
 
-export default function LeagueSelection(props) {
+const LeagueSelection = props => {
   return (
     <React.Fragment>
       <h2>Select the league & See the details</h2>
@@ -22,4 +22,6 @@ export default function LeagueSelection(props) {
       </div>
     </React.Fragment>
   );
-}
+};
+
+export default LeagueSelection;
