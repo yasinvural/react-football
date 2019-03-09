@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./PlayerInfoModal.css";
 import Modal from "@material-ui/core/Modal";
 import { withStyles } from "@material-ui/core/styles";
@@ -25,14 +25,13 @@ const styles = theme => ({
   }
 });
 
-class PlayerInfoModal extends Component {
-  render() {
-    const { classes, player, isPlayerInfoModalOpen } = this.props;
+const PlayerInfoModal = (props) =>{
+    const { classes, player, isPlayerInfoModalOpen } = props;
     return (
       <div>
         <Modal
           open={isPlayerInfoModalOpen}
-          onClose={this.props.closePlayerInfoModal}
+          onClose={props.closePlayerInfoModal}
         >
           <div
             style={getModalStyle()}
@@ -43,7 +42,7 @@ class PlayerInfoModal extends Component {
               <div>{player.name}</div>
               <div
                 className="closeButton"
-                onClick={this.props.closePlayerInfoModal}
+                onClick={props.closePlayerInfoModal}
               >
                 X
               </div>
@@ -70,7 +69,6 @@ class PlayerInfoModal extends Component {
         </Modal>
       </div>
     );
-  }
 }
 
 export default withStyles(styles)(PlayerInfoModal);
