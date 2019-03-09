@@ -56,8 +56,8 @@ const styles = theme => ({
   }
 });
 
-const Fixtures = (props) => {
-   const renderWeeksOptions = () => {
+const Fixtures = props => {
+  const renderWeeksOptions = () => {
     const { currentLeagueCode } = props.context;
     let weeks;
     if (currentLeagueCode === "BL1") {
@@ -99,7 +99,7 @@ const Fixtures = (props) => {
     );
   };
 
-  const renderStatus = (status) => {
+  const renderStatus = status => {
     switch (status) {
       case "FINISHED":
         return "Completed";
@@ -141,15 +141,14 @@ const Fixtures = (props) => {
         </React.Fragment>
       );
     }
-  }
-  
+  };
+
   return (
     <div className="fixture-container">
       <div className="week-container">{renderWeekSelection()}</div>
       {renderMatchResults()}
     </div>
   );
-  
-}
+};
 
 export default withStyles(styles)(Fixtures);

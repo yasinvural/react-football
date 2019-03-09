@@ -35,7 +35,7 @@ const styles = theme => ({
   }
 });
 
-const Standings = (props) => {
+const Standings = props => {
   const [isTeamInfoModalOpen, setIsTeamInfoModalOpen] = useState(false);
   const [teamId, setTeamId] = useState(null);
 
@@ -47,7 +47,6 @@ const Standings = (props) => {
   const closeTeamInfoModal = () => {
     setIsTeamInfoModalOpen(false);
     setTeamId(null);
-
   };
 
   const renderTeamInfoModal = () => {
@@ -62,78 +61,76 @@ const Standings = (props) => {
     }
   };
 
-    const { classes } = props;
-    const { standings } = props.context;
-    if(standings.length === 0){
-      return(
-        <Spinner/>
-      )
-    }else{
-      return (
-        <React.Fragment>
-          <Paper className={classes.root}>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Position</TableCell>
-                  <TableCell>Club</TableCell>
-                  <TableCell>Won</TableCell>
-                  <TableCell>Drawn</TableCell>
-                  <TableCell>Lost</TableCell>
-                  <Tooltip title="Goals For" placement="top-start">
-                    <TableCell className={classes.header}>GF</TableCell>
-                  </Tooltip>
-                  <Tooltip title="Goals Against" placement="top-start">
-                    <TableCell className={classes.header}>GA</TableCell>
-                  </Tooltip>
-                  <Tooltip title="Goal Difference" placement="top-start">
-                    <TableCell className={classes.header}>GD</TableCell>
-                  </Tooltip>
-                  <TableCell>Points</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {standings.map(standing => (
-                  <TableRow key={standing.team.id}>
-                    <TableCell scope="row">{standing.position}</TableCell>
-                    <Tooltip
-                      placement="top-end"
-                      classes={{ tooltip: classes.lightTooltip }}
-                      title={
-                        <React.Fragment>
-                          <span>
-                            <img
-                              className={classes.img}
-                              src={standing.team.crestUrl}
-                              alt=""
-                            />
-                          </span>
-                        </React.Fragment>
-                      }
+  const { classes } = props;
+  const { standings } = props.context;
+  if (standings.length === 0) {
+    return <Spinner />;
+  } else {
+    return (
+      <React.Fragment>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Position</TableCell>
+                <TableCell>Club</TableCell>
+                <TableCell>Won</TableCell>
+                <TableCell>Drawn</TableCell>
+                <TableCell>Lost</TableCell>
+                <Tooltip title="Goals For" placement="top-start">
+                  <TableCell className={classes.header}>GF</TableCell>
+                </Tooltip>
+                <Tooltip title="Goals Against" placement="top-start">
+                  <TableCell className={classes.header}>GA</TableCell>
+                </Tooltip>
+                <Tooltip title="Goal Difference" placement="top-start">
+                  <TableCell className={classes.header}>GD</TableCell>
+                </Tooltip>
+                <TableCell>Points</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {standings.map(standing => (
+                <TableRow key={standing.team.id}>
+                  <TableCell scope="row">{standing.position}</TableCell>
+                  <Tooltip
+                    placement="top-end"
+                    classes={{ tooltip: classes.lightTooltip }}
+                    title={
+                      <React.Fragment>
+                        <span>
+                          <img
+                            className={classes.img}
+                            src={standing.team.crestUrl}
+                            alt=""
+                          />
+                        </span>
+                      </React.Fragment>
+                    }
+                  >
+                    <TableCell
+                      className={classes.header}
+                      onClick={() => openTeamInfoModal(standing.team.id)}
                     >
-                      <TableCell
-                        className={classes.header}
-                        onClick={() => openTeamInfoModal(standing.team.id)}
-                      >
-                        {standing.team.name}
-                      </TableCell>
-                    </Tooltip>
-                    <TableCell>{standing.won}</TableCell>
-                    <TableCell>{standing.draw}</TableCell>
-                    <TableCell>{standing.lost}</TableCell>
-                    <TableCell>{standing.goalsFor}</TableCell>
-                    <TableCell>{standing.goalsAgainst}</TableCell>
-                    <TableCell>{standing.goalDifference}</TableCell>
-                    <TableCell>{standing.points}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Paper>
-          {renderTeamInfoModal()}
-        </React.Fragment>
-      )
-    }
-}
+                      {standing.team.name}
+                    </TableCell>
+                  </Tooltip>
+                  <TableCell>{standing.won}</TableCell>
+                  <TableCell>{standing.draw}</TableCell>
+                  <TableCell>{standing.lost}</TableCell>
+                  <TableCell>{standing.goalsFor}</TableCell>
+                  <TableCell>{standing.goalsAgainst}</TableCell>
+                  <TableCell>{standing.goalDifference}</TableCell>
+                  <TableCell>{standing.points}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
+        {renderTeamInfoModal()}
+      </React.Fragment>
+    );
+  }
+};
 
 export default withStyles(styles)(Standings);

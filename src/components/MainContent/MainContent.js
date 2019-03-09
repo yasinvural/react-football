@@ -23,44 +23,47 @@ const styles = theme => ({
   }
 });
 
-const MainContent = (props) => {
-
-  const [value,setValue] = useState(0);
+const MainContent = props => {
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, value) => {
     setValue(value);
   };
 
-  const renderTabDetail = (context) => {
-      let {selectedTabValue} = context;
-      if(selectedTabValue === 0){
-          return(<Standings context={context}/>)
-      }else if(selectedTabValue === 1){
-          return(<Fixtures context={context}/>)
-      }else if(selectedTabValue === 2){
-        return(<GoalStatistic context={context} />)
-      }
-  }
+  const renderTabDetail = context => {
+    let { selectedTabValue } = context;
+    if (selectedTabValue === 0) {
+      return <Standings context={context} />;
+    } else if (selectedTabValue === 1) {
+      return <Fixtures context={context} />;
+    } else if (selectedTabValue === 2) {
+      return <GoalStatistic context={context} />;
+    }
+  };
 
-    const { classes } = props;
-    return (
-      <FootballContext.Consumer>
-        {(context)=>(
-          <div className={classes.root}>
-            <AppBar position="static">
-              <Tabs variant="fullWidth" value={context.selectedTabValue} onChange={context.handleTabValueChange}>
-                <LinkTab label="Standings" href="page1" />
-                <LinkTab label="Fixtures" href="page2"  />
-                <LinkTab label="Goal Statistic" href="page3" />
-              </Tabs>
-            </AppBar>
-            {context.selectedTabValue === 0 && renderTabDetail(context)}
-            {context.selectedTabValue === 1 && renderTabDetail(context)}
-            {context.selectedTabValue === 2 && renderTabDetail(context)}
-          </div>
-        )}
-       </FootballContext.Consumer>
-    );
-}
+  const { classes } = props;
+  return (
+    <FootballContext.Consumer>
+      {context => (
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Tabs
+              variant="fullWidth"
+              value={context.selectedTabValue}
+              onChange={context.handleTabValueChange}
+            >
+              <LinkTab label="Standings" href="page1" />
+              <LinkTab label="Fixtures" href="page2" />
+              <LinkTab label="Goal Statistic" href="page3" />
+            </Tabs>
+          </AppBar>
+          {context.selectedTabValue === 0 && renderTabDetail(context)}
+          {context.selectedTabValue === 1 && renderTabDetail(context)}
+          {context.selectedTabValue === 2 && renderTabDetail(context)}
+        </div>
+      )}
+    </FootballContext.Consumer>
+  );
+};
 
 export default withStyles(styles)(MainContent);
