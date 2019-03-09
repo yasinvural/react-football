@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Standings.css";
-//3757
+
 import TeamInfoModal from "../Modals/TeamInfoModal/TeamInfoModal";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -35,47 +35,35 @@ const styles = theme => ({
   }
 });
 
-class Standings extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isTeamInfoModalOpen: false,
-      teamId: null
-    };
-  }
+const Standings = (props) => {
+  const [isTeamInfoModalOpen, setIsTeamInfoModalOpen] = useState(false);
+  const [teamId, setTeamId] = useState(null);
 
-  openTeamInfoModal = teamId => {
-    if (teamId) {
-      this.setState({
-        isTeamInfoModalOpen: true,
-        teamId
-      });
-    }
+  const openTeamInfoModal = teamId => {
+    setTeamId(teamId);
+    setIsTeamInfoModalOpen(true);
   };
 
-  closeTeamInfoModal = () => {
-    this.setState({
-      isTeamInfoModalOpen: false,
-      teamId: null
-    });
+  const closeTeamInfoModal = () => {
+    setIsTeamInfoModalOpen(false);
+    setTeamId(null);
+
   };
 
-  renderTeamInfoModal = () => {
-    const { isTeamInfoModalOpen, teamId } = this.state;
-
+  const renderTeamInfoModal = () => {
     if (isTeamInfoModalOpen) {
       return (
         <TeamInfoModal
           teamId={teamId}
           isTeamInfoModalOpen={isTeamInfoModalOpen}
-          closeTeamInfoModal={this.closeTeamInfoModal}
+          closeTeamInfoModal={closeTeamInfoModal}
         />
       );
     }
   };
-  render() {
-    const { classes } = this.props;
-    const { standings } = this.props.context;
+
+    const { classes } = props;
+    const { standings } = props.context;
     if(standings.length === 0){
       return(
         <Spinner/>
@@ -125,7 +113,7 @@ class Standings extends Component {
                     >
                       <TableCell
                         className={classes.header}
-                        onClick={() => this.openTeamInfoModal(standing.team.id)}
+                        onClick={() => openTeamInfoModal(standing.team.id)}
                       >
                         {standing.team.name}
                       </TableCell>
@@ -142,12 +130,10 @@ class Standings extends Component {
               </TableBody>
             </Table>
           </Paper>
-          {this.renderTeamInfoModal()}
+          {renderTeamInfoModal()}
         </React.Fragment>
       )
     }
-    
-  }
 }
 
 export default withStyles(styles)(Standings);
