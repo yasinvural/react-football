@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Fixtures.css";
 import { withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -56,9 +56,9 @@ const styles = theme => ({
   }
 });
 
-class Fixtures extends Component {
-  renderWeeksOptions = () => {
-    const { currentLeagueCode } = this.props.context;
+const Fixtures = (props) => {
+   const renderWeeksOptions = () => {
+    const { currentLeagueCode } = props.context;
     let weeks;
     if (currentLeagueCode === "BL1") {
       weeks = 34;
@@ -76,8 +76,8 @@ class Fixtures extends Component {
     return options;
   };
 
-  renderWeekSelection() {
-    const { classes, context } = this.props;
+  const renderWeekSelection = () => {
+    const { classes, context } = props;
     return (
       <FormControl className={classes.margin}>
         <InputLabel
@@ -93,13 +93,13 @@ class Fixtures extends Component {
             <BootstrapInput name="age" id="age-customized-native-simple" />
           }
         >
-          {this.renderWeeksOptions()}
+          {renderWeeksOptions()}
         </NativeSelect>
       </FormControl>
     );
-  }
+  };
 
-  renderStatus(status) {
+  const renderStatus = (status) => {
     switch (status) {
       case "FINISHED":
         return "Completed";
@@ -116,9 +116,10 @@ class Fixtures extends Component {
       default:
         return "";
     }
-  }
-  renderMatchResults() {
-    const { fixtures } = this.props.context;
+  };
+
+  const renderMatchResults = () => {
+    const { fixtures } = props.context;
     if (fixtures.length === 0) {
       return <Spinner />;
     } else {
@@ -133,7 +134,7 @@ class Fixtures extends Component {
                   {match.score.fullTime.awayTeam}
                 </div>
                 <div className="away-team">{match.awayTeam.name}</div>
-                <div className="status">{this.renderStatus(match.status)}</div>
+                <div className="status">{renderStatus(match.status)}</div>
               </div>
             </div>
           ))}
@@ -141,14 +142,14 @@ class Fixtures extends Component {
       );
     }
   }
-  render() {
-    return (
-      <div className="fixture-container">
-        <div className="week-container">{this.renderWeekSelection()}</div>
-        {this.renderMatchResults()}
-      </div>
-    );
-  }
+  
+  return (
+    <div className="fixture-container">
+      <div className="week-container">{renderWeekSelection()}</div>
+      {renderMatchResults()}
+    </div>
+  );
+  
 }
 
 export default withStyles(styles)(Fixtures);
