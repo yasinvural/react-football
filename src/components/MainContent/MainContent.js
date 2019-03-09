@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./MainContent.css";
 
 import FootballContext from "../../context/FootballContext";
@@ -23,19 +23,15 @@ const styles = theme => ({
   }
 });
 
-class MainContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0
-    };
-  }
+const MainContent = (props) => {
 
-  handleChange = (event, value) => {
-    this.setState({ value });
+  const [value,setValue] = useState(0);
+
+  const handleChange = (event, value) => {
+    setValue(value);
   };
 
-  renderTabDetail(context){
+  const renderTabDetail = (context) => {
       let {selectedTabValue} = context;
       if(selectedTabValue === 0){
           return(<Standings context={context}/>)
@@ -46,8 +42,7 @@ class MainContent extends Component {
       }
   }
 
-  render() {
-    const { classes } = this.props;
+    const { classes } = props;
     return (
       <FootballContext.Consumer>
         {(context)=>(
@@ -59,14 +54,13 @@ class MainContent extends Component {
                 <LinkTab label="Goal Statistic" href="page3" />
               </Tabs>
             </AppBar>
-            {context.selectedTabValue === 0 && this.renderTabDetail(context)}
-            {context.selectedTabValue === 1 && this.renderTabDetail(context)}
-            {context.selectedTabValue === 2 && this.renderTabDetail(context)}
+            {context.selectedTabValue === 0 && renderTabDetail(context)}
+            {context.selectedTabValue === 1 && renderTabDetail(context)}
+            {context.selectedTabValue === 2 && renderTabDetail(context)}
           </div>
         )}
        </FootballContext.Consumer>
     );
-  }
 }
 
 export default withStyles(styles)(MainContent);
