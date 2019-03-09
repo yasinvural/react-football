@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import { NotificationContainer } from "react-notifications";
 import { Route } from "react-router-dom";
@@ -7,8 +7,8 @@ import FootballProvider from "../../context/FootballProvider";
 
 import LeagueSelection from "../LeagueSelection/LeagueSelection";
 import LeagueDetails from "../LeagueDetails/LeagueDetails";
-class App extends Component {
-  render() {
+
+const  App = ()=> {
     return (
       <div className="App">
         <FootballProvider>
@@ -29,7 +29,6 @@ class App extends Component {
         </FootballProvider>
       </div>
     );
-  }
 }
 
 export default App;
