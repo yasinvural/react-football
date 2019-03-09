@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./TeamInfoModal.css";
 import Modal from "@material-ui/core/Modal";
 import PlayerInfoModal from "../PlayerInfoModal/PlayerInfoModal";
@@ -27,41 +27,30 @@ const styles = theme => ({
   }
 });
 
-class TeamInfoModal extends Component {
-  footballService = new FootballService();
-  constructor(props) {
-    super(props);
-    this.state = {
-      squad: [],
-      isPlayerInfoModalOpen: false,
-      currentPlayer: {}
-    };
-  }
+const TeamInfoModal = (props) =>{
+  const [squad, setSquad] = useState([]);
+  const [isPlayerInfoModalOpen, setIsPlayerInfoModalOpen] = useState(false);
+  const [currentPlayer, setCurrentPlayer] = useState({});
+  const footballService = new FootballService();
 
-  componentDidMount() {
-    const { teamId } = this.props;
-    let teamInfo = this.footballService.getTeamInfo(teamId);
+  useEffect(()=>{
+    const { teamId } = props;
+    let teamInfo = footballService.getTeamInfo(teamId);
     teamInfo.then(data => {
-      this.setState({
-        squad: data.data.squad
-      });
+      setSquad(data.data.squad);
     });
-  }
+  },[]);
 
-  handleOpenPlayerInfoModal = player => {
-    this.setState({
-      isPlayerInfoModalOpen: true,
-      currentPlayer: player
-    });
+  const handleOpenPlayerInfoModal = player => {
+    setIsPlayerInfoModalOpen(true);
+    setCurrentPlayer(player);
   };
 
-  handleClosePlayerInfoModal = () => {
-    this.setState({
-      isPlayerInfoModalOpen: false
-    });
+  const handleClosePlayerInfoModal = () => {
+    setIsPlayerInfoModalOpen(false);
   };
 
-  squadClass(position) {
+  const squadClass = (position) => {
     switch (position) {
       case "Goalkeeper":
         return "player player-gk";
@@ -78,44 +67,42 @@ class TeamInfoModal extends Component {
       default:
         return "player player-coach";
     }
-  }
+  };
 
-  renderSquad() {
-    const { squad } = this.state;
+  const renderSquad = ()=> {
     return squad.map(player => (
       <div
         key={player.id}
-        className={this.squadClass(player.position)}
-        onClick={() => this.handleOpenPlayerInfoModal(player)}
+        className={squadClass(player.position)}
+        onClick={() => handleOpenPlayerInfoModal(player)}
       >
         <span>{player.position ? player.position : 'Coach'}-</span>
         <span>{player.name}</span>
       </div>
     ));
-  }
+  };
 
-  renderPlayerInfoModal() {
-    if (this.state.isPlayerInfoModalOpen) {
+  const renderPlayerInfoModal = () => {
+    if (isPlayerInfoModalOpen) {
       return (
         <PlayerInfoModal
-          isPlayerInfoModalOpen={this.state.isPlayerInfoModalOpen}
-          player={this.state.currentPlayer}
-          closePlayerInfoModal={this.handleClosePlayerInfoModal}
+          isPlayerInfoModalOpen={isPlayerInfoModalOpen}
+          player={currentPlayer}
+          closePlayerInfoModal={handleClosePlayerInfoModal}
         />
       );
     } else {
       return <React.Fragment />;
     }
-  }
+  };
 
-  render() {
-    const { classes, isTeamInfoModalOpen } = this.props;
+    const { classes, isTeamInfoModalOpen } = props;
     return (
       <div>
-        {this.renderPlayerInfoModal()}
+        {renderPlayerInfoModal()}
         <Modal
           open={isTeamInfoModalOpen}
-          onClose={this.props.closeTeamInfoModal}
+          onClose={props.closeTeamInfoModal}
         >
           <div
             style={getModalStyle()}
@@ -126,17 +113,17 @@ class TeamInfoModal extends Component {
               <div>Squad</div>
               <div
                 className="closeButton"
-                onClick={this.props.closeTeamInfoModal}
+                onClick={props.closeTeamInfoModal}
               >
                 X
               </div>
             </div>
-            <div className="detail-info">{this.renderSquad()}</div>
+            <div className="detail-info">{renderSquad()}</div>
           </div>
         </Modal>
       </div>
     );
-  }
+
 }
 
 export default withStyles(styles)(TeamInfoModal);
