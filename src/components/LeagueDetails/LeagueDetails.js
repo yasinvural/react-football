@@ -9,7 +9,6 @@ const LeagueDetails = props => {
     let { pathname } = props.history.location;
     let leagueCode = pathname.split("/league/")[1];
     setCurrentLeague(leagueCode);
-    debugger;
     props.context.setCurrentLeague(leagueCode);
   });
 

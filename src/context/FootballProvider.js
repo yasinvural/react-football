@@ -1,127 +1,104 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import FootballContext from "./FootballContext";
 import FootballService from "../services/FootballService";
 
 const footballService = new FootballService();
 
-export default class FootballProvider extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentLeagueCode: null,
-      selectedTabValue: 0,
-      selectedWeek: 1,
-      standings: [],
-      fixtures: [],
-      scorers: [],
-      loadStandings: this.loadStandings,
-      loadGoalStatistic: this.loadGoalStatistic,
-      setCurrentLeague: this.setCurrentLeague,
-      handleTabValueChange: this.handleTabValueChange,
-      handleMatchWeekChange: this.handleMatchWeekChange
-    };
-  }
+const FootballProvider = (props) => {
+  const [currentLeagueCode,setCurrentLeagueCode] = useState(null);
+  const [selectedTabValue,setSelectedTabValue] = useState(0);
+  const [selectedWeek,setSelectedWeek] = useState(1);
+  const [standings, setStandings] = useState([]);
+  const [fixtures, setFixtures] = useState([]);
+  const [scorers, setScorers] = useState([]);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.currentLeagueCode !== prevState.currentLeagueCode) {
-      this.loadData();
-    }
-  }
+  useEffect(()=>{
+    loadData();
+  },[currentLeagueCode,selectedTabValue,selectedWeek])
 
-  loadData = () => {
-    let { selectedTabValue } = this.state;
+  const loadData = () => {
     if (selectedTabValue === 0) {
-      this.loadStandings();
+      loadStandings();
     } else if (selectedTabValue === 1) {
-      this.loadFixtures();
+      loadFixtures();
     } else if (selectedTabValue === 2) {
-      this.loadGoalStatistic();
+      loadGoalStatistic();
     }
   };
 
-  handleMatchWeekChange = event => {
+  const handleMatchWeekChange = event => {
     const selectedWeek = event.target.value;
-    this.setState(
-      {
-        selectedWeek
-      },
-      () => {
-        this.loadFixtures();
-      }
-    );
+    setSelectedWeek(selectedWeek);
+    loadFixtures();
   };
 
-  handleTabValueChange = (event, value) => {
-    this.setState(
-      {
-        selectedTabValue: value
-      },
-      () => {
-        this.loadData();
-      }
-    );
+  const handleTabValueChange = (event, value) => {
+    if(value === selectedTabValue) return;
+
+    setSelectedTabValue(value);
+    loadData();
   };
 
-  setCurrentLeague = leagueCode => {
-    const { currentLeagueCode } = this.state;
+  const setCurrentLeague = leagueCode => {
     if (currentLeagueCode !== leagueCode) {
-      this.setState({
-        currentLeagueCode: leagueCode
-      });
+      setCurrentLeagueCode(leagueCode);
     }
   };
 
-  async loadFixtures() {
-    const { currentLeagueCode, selectedWeek } = this.state;
+  const loadFixtures = async () => {
     try {
       const fixtureResult = await footballService.getMatches(
         currentLeagueCode,
         selectedWeek
       );
       const fixtures = fixtureResult.data.matches;
-      this.setState({
-        fixtures
-      });
+      setFixtures(fixtures);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  async loadStandings() {
-    const { currentLeagueCode } = this.state;
+  const loadStandings = async () => {
     try {
       if (currentLeagueCode) {
         const standingResult = await footballService.getStandings(
           currentLeagueCode
         );
         const standings = standingResult.data.standings[0].table;
-        this.setState({
-          standings
-        });
+        setStandings(standings);
       }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  async loadGoalStatistic() {
-    const { currentLeagueCode } = this.state;
+  const loadGoalStatistic = async () => {
     try {
       const goalStatisticResult = await footballService.getGoalStatistic(
         currentLeagueCode
       );
       const scorers = goalStatisticResult.data.scorers;
-      this.setState({ scorers });
+      setScorers(scorers);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  render() {
-    return (
-      <FootballContext.Provider value={this.state}>
-        {this.props.children}
-      </FootballContext.Provider>
-    );
-  }
+  return (
+    <FootballContext.Provider value={{
+      currentLeagueCode:currentLeagueCode,
+      selectedTabValue:selectedTabValue,
+      selectedWeek:selectedWeek,
+      standings:standings,
+      fixtures:fixtures,
+      scorers:scorers,
+      handleMatchWeekChange:handleMatchWeekChange,
+      handleTabValueChange:handleTabValueChange,
+      setCurrentLeague:setCurrentLeague
+    }}>
+      {props.children}
+    </FootballContext.Provider>
+  );
 }
+
+export default FootballProvider;
