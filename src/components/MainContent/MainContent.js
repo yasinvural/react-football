@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./MainContent.css";
 
 import FootballContext from "../../context/FootballContext";
@@ -25,12 +25,13 @@ const styles = theme => ({
 
 const MainContent = props => {
   const [value, setValue] = useState(0);
+  let context = useContext(FootballContext);
 
   const handleChange = (event, value) => {
     setValue(value);
   };
 
-  const renderTabDetail = context => {
+  const renderTabDetail = () => {
     let { selectedTabValue } = context;
     if (selectedTabValue === 0) {
       return <Standings context={context} />;
@@ -43,26 +44,22 @@ const MainContent = props => {
 
   const { classes } = props;
   return (
-    <FootballContext.Consumer>
-      {context => (
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Tabs
-              variant="fullWidth"
-              value={context.selectedTabValue}
-              onChange={context.handleTabValueChange}
-            >
-              <LinkTab label="Standings" href="page1" />
-              <LinkTab label="Fixtures" href="page2" />
-              <LinkTab label="Goal Statistic" href="page3" />
-            </Tabs>
-          </AppBar>
-          {context.selectedTabValue === 0 && renderTabDetail(context)}
-          {context.selectedTabValue === 1 && renderTabDetail(context)}
-          {context.selectedTabValue === 2 && renderTabDetail(context)}
-        </div>
-      )}
-    </FootballContext.Consumer>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Tabs
+            variant="fullWidth"
+            value={context.selectedTabValue}
+            onChange={context.handleTabValueChange}
+          >
+            <LinkTab label="Standings" href="page1" />
+            <LinkTab label="Fixtures" href="page2" />
+            <LinkTab label="Goal Statistic" href="page3" />
+          </Tabs>
+        </AppBar>
+        {context.selectedTabValue === 0 && renderTabDetail()}
+        {context.selectedTabValue === 1 && renderTabDetail()}
+        {context.selectedTabValue === 2 && renderTabDetail()}
+      </div>
   );
 };
 

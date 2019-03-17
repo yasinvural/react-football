@@ -9,6 +9,7 @@ import LeagueSelection from "../LeagueSelection/LeagueSelection";
 import LeagueDetails from "../LeagueDetails/LeagueDetails";
 
 const App = () => {
+
   return (
     <div className="App">
       <FootballProvider>
