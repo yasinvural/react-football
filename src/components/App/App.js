@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <FootballProvider>
         <NotificationContainer/>
-          <Route exact path="/" component={LeagueSelection} />
+          <Route exact path="/react-football" component={LeagueSelection} />
           <FootballContext.Consumer>
             {context => (
               <React.Fragment>

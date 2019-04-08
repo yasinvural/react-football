@@ -68,11 +68,11 @@ export default class LeftMenu extends Component {
       <React.Fragment>
         <div className="left-menu-container">
           {this.renderLeagueList()}
-          <div className="league-drawer" onClick={this.toggleDrawer}>Open Drawer</div>
+          <div className="league-drawer" onClick={this.toggleDrawer}><i className="fa fa-bars fa-2x"></i></div>
         </div>
         <SwipeableDrawer anchor="top" open={top} onClose={this.toggleDrawer} onOpen={this.toggleDrawer}>
           <div className="drawer-container" onClick={this.drawerClick}>
-            {this.renderLeagueList()}
+          {this.renderLeagueList()}  
           </div>
         </SwipeableDrawer>
       </React.Fragment>
